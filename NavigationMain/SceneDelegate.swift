@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  NavigationMain
-//
-//  Created by Архипов Вячеслав on 14.02.2022.
-//
 
 import UIKit
 
@@ -13,12 +7,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
+        window?.makeKeyAndVisible()
+        
+        let tabBarController = UITabBarController ()
+        let feedViewController = FeedViewController()
+        feedViewController.view.backgroundColor = .systemGray4
+        feedViewController.title = "Feed"
+ //       feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: nil, tag: 0)
+        feedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        
+        
+        let profileViewCotroller = ProfileViewController()
+        profileViewCotroller.view.backgroundColor = .systemGreen
+        profileViewCotroller.title = "Profile"
+                profileViewCotroller.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts , tag: 1)
+        
+        let feedNavController = UINavigationController(rootViewController: feedViewController)
+        let profilNavController = UINavigationController(rootViewController: profileViewCotroller)
+        
+        tabBarController.viewControllers = [feedNavController, profilNavController]
+        window?.rootViewController = tabBarController
+    
+        
     }
 
+    
+    
+    
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
