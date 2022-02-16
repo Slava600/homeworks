@@ -4,34 +4,44 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        window?.makeKeyAndVisible()
         
-        let tabBarController = UITabBarController ()
+        // создал окно
+        let window = UIWindow(windowScene: scene)
+        
+        // ViewControllers
         let feedViewController = FeedViewController()
-        feedViewController.view.backgroundColor = .systemGray4
-        feedViewController.title = "Feed"
- //       feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: nil, tag: 0)
-        feedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        
-        
         let profileViewCotroller = ProfileViewController()
-        profileViewCotroller.view.backgroundColor = .systemGreen
-        profileViewCotroller.title = "Profile"
-                profileViewCotroller.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts , tag: 1)
         
+        //NavVC
         let feedNavController = UINavigationController(rootViewController: feedViewController)
         let profilNavController = UINavigationController(rootViewController: profileViewCotroller)
         
-        tabBarController.viewControllers = [feedNavController, profilNavController]
-        window?.rootViewController = tabBarController
-    
+        // Иконки на TabBarItems для NavVC
+        feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "text.justify"), tag: 0)
+        profilNavController.tabBarItem = UITabBarItem(title: "Profil", image: UIImage(systemName: "person"), tag: 0)
         
+    
+        //создал tabBarController
+        let tabBarController = UITabBarController ()
+        
+        // разместил NavVC в TabBarVC
+        tabBarController.viewControllers = [feedNavController, profilNavController]
+        
+        // указываю корневой VC для window
+        window.rootViewController = tabBarController
+        
+        //окно делается ключевым и видимым
+        window.makeKeyAndVisible()
+        self.window = window
+        
+
+
+    
     }
+    
 
     
     
