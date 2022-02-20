@@ -1,16 +1,11 @@
 import UIKit
 
 class PostViewController: UIViewController {
-
     var postTitle: String?
-    
-    
-    // реализация фона, заголовка, кнопки i на странице Post
     override func viewDidLoad() {
         super.viewDidLoad()
         title = postTitle
         view.backgroundColor = .systemGray2
-        
         let infoBarItem: UIBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(tapInfo))
         navigationItem.rightBarButtonItem = infoBarItem
     }
@@ -18,5 +13,4 @@ class PostViewController: UIViewController {
         let infoViewController = InfoViewController()
         navigationController?.present(infoViewController, animated: true)
     }
-
 }
