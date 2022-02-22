@@ -50,10 +50,21 @@
 		11624DB827C2B4F700548048 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				11624DB927C2B55B00548048 /* ProfileHeaderView.swift */,
 				11EC209B27BAB44100FF048A /* ProfileViewController.swift */,
+				11624DB927C2B55B00548048 /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		11624DC827C3EFCB00548048 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				11EC209927BAB43100FF048A /* FeedViewController.swift */,
+				11EC209E27BAC8F800FF048A /* PostViewController.swift */,
+				11624DB627BD8A4300548048 /* InfoViewController.swift */,
+				11624DB427BD794400548048 /* Post.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		11EC207927BA845500FF048A = {
@@ -75,12 +86,9 @@
 		11EC208427BA845500FF048A /* NavigationMain */ = {
 			isa = PBXGroup;
 			children = (
-				11624DB827C2B4F700548048 /* Profile */,
 				11EC20C227BB0B6600FF048A /* SceneDelegate.swift */,
-				11624DB427BD794400548048 /* Post.swift */,
-				11EC209927BAB43100FF048A /* FeedViewController.swift */,
-				11EC209E27BAC8F800FF048A /* PostViewController.swift */,
-				11624DB627BD8A4300548048 /* InfoViewController.swift */,
+				11624DB827C2B4F700548048 /* Profile */,
+				11624DC827C3EFCB00548048 /* Feed */,
 				11EC208E27BA845900FF048A /* Assets.xcassets */,
 				11EC209027BA845900FF048A /* LaunchScreen.storyboard */,
 				11EC209327BA845900FF048A /* Info.plist */,

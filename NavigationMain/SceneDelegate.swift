@@ -11,26 +11,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedNavController = UINavigationController(rootViewController: feedViewController)
         let profilNavController = UINavigationController(rootViewController: profileViewCotroller)
         feedNavController.tabBarItem = UITabBarItem(
-            title: "Feed",
+            title: "Лента",
             image: UIImage(systemName: "text.justify"),
             tag: 0)
         
         profilNavController.tabBarItem = UITabBarItem(
-            title: "Profil",
+            title: "Профиль",
             image: UIImage(systemName: "person"),
             tag: 0)
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGray4
+        appearance.backgroundColor = .white
         feedNavController.navigationBar.standardAppearance = appearance
         feedNavController.navigationBar.scrollEdgeAppearance = feedNavController.navigationBar.standardAppearance
         profilNavController.navigationBar.standardAppearance = appearance
         profilNavController.navigationBar.scrollEdgeAppearance = profilNavController.navigationBar.standardAppearance
         
         let tabBarController = UITabBarController ()
-        tabBarController.viewControllers = [profilNavController, feedNavController]
-        tabBarController.tabBar.backgroundColor = .systemGray4
+        tabBarController.viewControllers = [feedNavController, profilNavController]
+        tabBarController.tabBar.backgroundColor = .white
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
