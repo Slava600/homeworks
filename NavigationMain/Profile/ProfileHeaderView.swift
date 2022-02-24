@@ -33,15 +33,16 @@ class ProfileHeaderView: UIView {
         self.addSubview(avatarImage)
         
         statusLable.translatesAutoresizingMaskIntoConstraints = false
-        statusLable.text = "заполнить статус..."
+        statusLable.text = "статус не установлен"
         statusLable.textAlignment = .natural
         statusLable.textColor = .gray
         statusLable.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         statusLable.isUserInteractionEnabled = true
         self.addSubview(statusLable)
         
+        let color = UIColor(named: "battonColor")
         statusBatton.translatesAutoresizingMaskIntoConstraints = false
-        statusBatton.backgroundColor = #colorLiteral(red: 0.05408742279, green: 0.4763534069, blue: 0.9996182323, alpha: 1)
+        statusBatton.backgroundColor = color
         statusBatton.layer.cornerRadius = 4
         statusBatton.layer.shadowColor = UIColor.black.cgColor
         statusBatton.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -57,12 +58,13 @@ class ProfileHeaderView: UIView {
         statusSetField.placeholder = "Ввести статус"
         statusSetField.textColor = .black
         statusSetField.backgroundColor = .white
-        statusSetField.textAlignment = .natural
+        statusSetField.textAlignment = .left
         statusSetField.layer.cornerRadius = 12
         statusSetField.layer.borderWidth = 1
-        statusSetField.layer.borderColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        statusSetField.layer.borderColor = UIColor.black.cgColor
         statusSetField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusSetField.frame.height))
         statusSetField.leftViewMode = .always
+        
         statusSetField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         self.addSubview(statusSetField)
         
@@ -70,12 +72,13 @@ class ProfileHeaderView: UIView {
     
     @objc func pressButton() {
         print(statusLable.text ?? "---")
+        
         statusLable.text = statusText
         statusText = ""
         statusSetField.text = ""
         statusSetField.resignFirstResponder()
     }
-    
+
     @objc func statusTextChanged(_ textField: UITextField) {
         if let text = textField.text {
             statusText = text

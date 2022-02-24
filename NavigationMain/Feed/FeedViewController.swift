@@ -12,9 +12,9 @@ class FeedViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Лента"
         view.backgroundColor = .systemGray5
-        self.title = "Лента"
+
         
         button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
         button.center = view.center
