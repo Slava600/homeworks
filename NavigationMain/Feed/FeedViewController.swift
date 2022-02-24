@@ -2,7 +2,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    let post = Post(title: "Мой пост")
+    let post = Post(title: "Пост")
     var button = UIButton()
     
     @objc func tap () {
@@ -12,9 +12,9 @@ class FeedViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Лента"
         view.backgroundColor = .systemGray5
-        self.title = "Feed"
+
         
         button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
         button.center = view.center
@@ -22,7 +22,7 @@ class FeedViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.backgroundColor = .systemBlue
-        button.setTitle("Show post", for: .normal)
+        button.setTitle("Посмотреть пост", for: .normal)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         view.addSubview(button)
     }

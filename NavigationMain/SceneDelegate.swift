@@ -6,31 +6,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        let feedViewController = FeedViewController()
-        let profileViewCotroller = ProfileViewController()
-        let feedNavController = UINavigationController(rootViewController: feedViewController)
-        let profilNavController = UINavigationController(rootViewController: profileViewCotroller)
-        feedNavController.tabBarItem = UITabBarItem(
-            title: "Feed",
-            image: UIImage(systemName: "text.justify"),
-            tag: 0)
         
-        profilNavController.tabBarItem = UITabBarItem(
-            title: "Profil",
-            image: UIImage(systemName: "person"),
-            tag: 0)
+        let tabBarController = UITabBarController ()
+        tabBarController.tabBar.backgroundColor = .white
+        
+        let feedViewController = FeedViewController()
+        feedViewController.view.backgroundColor = UIColor.white
+        let feedNavController = UINavigationController(rootViewController: feedViewController)
+
+        let profileViewController = ProfileViewController()
+        profileViewController.view.backgroundColor = .lightGray
+        let profilNavController = UINavigationController(rootViewController: profileViewController)
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemGray4
+        appearance.backgroundColor = .white
+        
+        feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "text.justify"), tag: 0)
+        feedNavController.navigationBar.barTintColor = UIColor.white
         feedNavController.navigationBar.standardAppearance = appearance
         feedNavController.navigationBar.scrollEdgeAppearance = feedNavController.navigationBar.standardAppearance
+
+        
+        profilNavController.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+        profilNavController.navigationBar.barTintColor = UIColor.white
         profilNavController.navigationBar.standardAppearance = appearance
         profilNavController.navigationBar.scrollEdgeAppearance = profilNavController.navigationBar.standardAppearance
         
-        let tabBarController = UITabBarController ()
+
         tabBarController.viewControllers = [profilNavController, feedNavController]
-        tabBarController.tabBar.backgroundColor = .systemGray4
+
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
