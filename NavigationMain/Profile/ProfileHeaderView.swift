@@ -97,30 +97,30 @@ class ProfileHeaderView: UIView {
             self.rightAnchor.constraint(equalTo: superview!.rightAnchor),
             self.topAnchor.constraint(equalTo: superview!.safeAreaLayoutGuide.topAnchor),
             self.heightAnchor.constraint(equalToConstant: 220),
-            
+
             avatarImage.widthAnchor.constraint(equalToConstant: 100),
             avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
             avatarImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            
+
             userNameLable.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
             userNameLable.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
             userNameLable.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            
+
             statusLable.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
             statusLable.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusLable.bottomAnchor.constraint(equalTo: statusSetField.topAnchor, constant: -6),
-            
+
             statusBatton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             statusBatton.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusBatton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 16),
             statusBatton.heightAnchor.constraint(equalToConstant: 50),
-            
+
             statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
             statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
             statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
             statusSetField.heightAnchor.constraint(equalToConstant: 40)
-        ])
+ ])
         
     }
     
