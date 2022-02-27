@@ -1,48 +1,54 @@
 
 import UIKit
 
+public extension UIView {
+    func toAutoLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
+}
+
 class ProfileHeaderView: UIView {
+   
+    let userNameLable: UILabel = {
+        let label = UILabel ()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .black
+        label.text = "Amber Richard"
+        label.numberOfLines = 0
+        label.toAutoLayout()
+        label.textAlignment = .left
+        return label
+    }()
+
     
-    let userNameLable: UILabel
-    let avatarImage: UIImageView
-    let statusLable: UILabel
-    let statusBatton: UIButton
-    let statusSetField: UITextField
-    private var statusText = ""
+    let avatarImage: UIImageView = {
+        let avatar = UIImageView (image: UIImage(named: "avatarImage"))
+        avatar.toAutoLayout()
+        avatar.clipsToBounds = true
+        avatar.layer.cornerRadius = 50
+        avatar.layer.borderWidth = 3
+        avatar.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        return avatar
+    }()
     
-    init() {
-        userNameLable = UILabel()
-        avatarImage = UIImageView(image: UIImage(named: "avatarImage"))
-        statusLable = UILabel()
-        statusBatton = UIButton()
-        statusSetField = UITextField()
-        super.init(frame: CGRect())
-        
-        userNameLable.translatesAutoresizingMaskIntoConstraints = false
-        userNameLable.text = "Amber Richard"
-        userNameLable.textAlignment = .left
-        userNameLable.textColor = .black
-        userNameLable.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        self.addSubview(userNameLable)
-        
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        avatarImage.clipsToBounds = true
-        avatarImage.layer.cornerRadius = 50
-        avatarImage.layer.borderWidth = 3
-        avatarImage.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
-        self.addSubview(avatarImage)
-        
-        statusLable.translatesAutoresizingMaskIntoConstraints = false
-        statusLable.text = "статус не установлен"
-        statusLable.textAlignment = .natural
-        statusLable.textColor = .gray
-        statusLable.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        statusLable.isUserInteractionEnabled = true
-        self.addSubview(statusLable)
-        
-        let color = UIColor(named: "battonColor")
-        statusBatton.translatesAutoresizingMaskIntoConstraints = false
-        statusBatton.backgroundColor = color
+    let statusLable: UILabel = {
+        let status = UILabel()
+        status.toAutoLayout()
+        status.text = "статус не установлен"
+        status.textAlignment = .natural
+        status.textColor = .gray
+        status.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        status.isUserInteractionEnabled = true
+        return status
+    }()
+    
+    let statusBatton: UIButton = {
+        let statusBatton = UIButton()
+        statusBatton.toAutoLayout()
+        statusBatton.backgroundColor = UIColor(named: "battonColor")
         statusBatton.layer.cornerRadius = 4
         statusBatton.layer.shadowColor = UIColor.black.cgColor
         statusBatton.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -51,28 +57,40 @@ class ProfileHeaderView: UIView {
         statusBatton.setTitle("Установить статус", for: .normal)
         statusBatton.setTitleColor(.white, for: .highlighted)
         statusBatton.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
+        return statusBatton
+    }()
+    
+    let statusSetField: UITextField = {
+        let setField = UITextField()
+        setField.toAutoLayout()
+        setField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        setField.placeholder = "Ввести статус"
+        setField.textColor = .black
+        setField.backgroundColor = .white
+        setField.textAlignment = .left
+        setField.layer.cornerRadius = 12
+        setField.layer.borderWidth = 1
+        setField.layer.borderColor = UIColor.black.cgColor
+        setField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: setField.frame.height))
+        setField.leftViewMode = .always
+        setField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        return setField
+    }()
+
+    private var statusText = ""
+
+ 
+    init() {
+        super.init(frame: CGRect())
+        self.addSubview(userNameLable)
+        self.addSubview(avatarImage)
+        self.addSubview(statusLable)
         self.addSubview(statusBatton)
-        
-        statusSetField.translatesAutoresizingMaskIntoConstraints = false
-        statusSetField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        statusSetField.placeholder = "Ввести статус"
-        statusSetField.textColor = .black
-        statusSetField.backgroundColor = .white
-        statusSetField.textAlignment = .left
-        statusSetField.layer.cornerRadius = 12
-        statusSetField.layer.borderWidth = 1
-        statusSetField.layer.borderColor = UIColor.black.cgColor
-        statusSetField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusSetField.frame.height))
-        statusSetField.leftViewMode = .always
-        
-        statusSetField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         self.addSubview(statusSetField)
-        
     }
     
     @objc func pressButton() {
         print(statusLable.text ?? "---")
-        
         statusLable.text = statusText
         statusText = ""
         statusSetField.text = ""
@@ -88,6 +106,8 @@ class ProfileHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -124,4 +144,5 @@ class ProfileHeaderView: UIView {
         
     }
     
+
 }
