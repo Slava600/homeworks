@@ -112,28 +112,25 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         useConstraint()
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-//        view.addGestureRecognizer(tapGesture)
-
+        
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil)
+        notificationCenter.addObserver(self,
+                selector: #selector(keyboardWillHide),
+                name: UIResponder.keyboardWillHideNotification,
+                object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        NotificationCenter.default.addObserver(self, selector:
-                                                #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self, selector:
-                                                #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboard = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
          
-            scrollView.contentInset.bottom = keyboard.height
-            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboard.height, right: 0)
+  //          scrollView.contentInset.bottom = keyboardFrame.height
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         }
     }
     

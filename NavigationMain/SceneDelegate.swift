@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logInNavController.navigationBar.scrollEdgeAppearance = logInNavController.navigationBar.standardAppearance
         logInNavController.navigationBar.isHidden = true
 
-        tabBarController.viewControllers = [feedNavController, logInNavController]
+        tabBarController.viewControllers = [logInNavController, feedNavController]
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
