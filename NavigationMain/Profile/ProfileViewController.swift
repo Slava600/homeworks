@@ -6,9 +6,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         title = "Профиль"
         
-       
         let profileHeaderView = ProfileHeaderView()
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        profileHeaderView.toAutoLayout()
         view.addSubview(profileHeaderView)
         view.backgroundColor = .lightGray
         

@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         logInViewContoller.view.backgroundColor = .white
         let logInNavController = UINavigationController(rootViewController: logInViewContoller)
         
-        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
@@ -33,19 +32,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNavController.navigationBar.standardAppearance = appearance
         feedNavController.navigationBar.scrollEdgeAppearance = feedNavController.navigationBar.standardAppearance
 
-        
         logInNavController.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
         logInNavController.navigationBar.barTintColor = UIColor.white
         logInNavController.navigationBar.standardAppearance = appearance
         logInNavController.navigationBar.scrollEdgeAppearance = logInNavController.navigationBar.standardAppearance
         logInNavController.navigationBar.isHidden = true
 
-        tabBarController.viewControllers = [logInNavController, feedNavController]
+        tabBarController.viewControllers = [feedNavController, logInNavController]
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
-        
     }
     
     
@@ -76,7 +73,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    
 }
 

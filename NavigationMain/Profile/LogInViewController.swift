@@ -99,59 +99,41 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
         scrollView.contentSize = CGSize(width: view.frame.width, height: max(view.frame.width, view.frame.height))
         
         contentView.addSubviews(logo, stackView, logIn)
         stackView.addArrangedSubview(userName)
         stackView.addArrangedSubview(password)
-        
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
-        
         useConstraint()
         
-        
         let notificationCenter = NotificationCenter.default
-        
-        notificationCenter.addObserver(self,
-                selector: #selector(keyboardWillShow),
-                name: UIResponder.keyboardWillShowNotification,
-                object: nil)
-        notificationCenter.addObserver(self,
-                selector: #selector(keyboardWillHide),
-                name: UIResponder.keyboardWillHideNotification,
-                object: nil)
+        notificationCenter.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
+        notificationCenter.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         self.scrollView.keyboardDismissMode = .onDrag
     }
     
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-         
             scrollView.contentInset.bottom = keyboardFrame.height
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-      
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
+        NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
     
     private func useConstraint() {
-        
         [scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
          scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
          scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -180,13 +162,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
          logIn.heightAnchor.constraint(equalToConstant: 50)].forEach({$0.isActive = true})
     }
     
-    
     @objc func tap() {
         password.resignFirstResponder()
         userName.resignFirstResponder()
     }
 
-    
     @objc func login() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
