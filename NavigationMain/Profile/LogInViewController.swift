@@ -123,19 +123,20 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 selector: #selector(keyboardWillHide),
                 name: UIResponder.keyboardWillHideNotification,
                 object: nil)
+        self.scrollView.keyboardDismissMode = .onDrag
     }
     
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
          
-  //          scrollView.contentInset.bottom = keyboardFrame.height
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+            scrollView.contentInset.bottom = keyboardFrame.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        
+      
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
@@ -187,7 +188,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     
     @objc func login() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
 
 }
