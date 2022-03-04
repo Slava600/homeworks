@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profilNavController.navigationBar.scrollEdgeAppearance = profilNavController.navigationBar.standardAppearance
         
 
-        tabBarController.viewControllers = [profilNavController, feedNavController]
+        tabBarController.viewControllers = [feedNavController, profilNavController]
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()

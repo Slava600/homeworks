@@ -5,6 +5,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Профиль"
+        
        
         let profileHeaderView = ProfileHeaderView()
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
