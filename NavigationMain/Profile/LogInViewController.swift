@@ -19,7 +19,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemYellow
         contentView.toAutoLayout()
         return contentView
     }()
@@ -64,7 +64,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return password
     }()
     
-    var logIn: UIButton = {
+    var logInButton: UIButton = {
         let logIn = UIButton()
         logIn.toAutoLayout()
         logIn.setTitle("Войти", for: .normal)
@@ -102,9 +102,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         scrollView.contentSize = CGSize(width: view.frame.width, height: max(view.frame.width, view.frame.height))
         
-        contentView.addSubviews(logo, stackView, logIn)
         stackView.addArrangedSubview(userName)
         stackView.addArrangedSubview(password)
+        contentView.addSubviews(logo, stackView, logInButton)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
         useConstraint()
@@ -156,10 +156,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
          stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
          stackView.heightAnchor.constraint(equalToConstant: 100),
          
-         logIn.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
-         logIn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
-         logIn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
-         logIn.heightAnchor.constraint(equalToConstant: 50)].forEach({$0.isActive = true})
+         logInButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
+         logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
+         logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
+         logInButton.heightAnchor.constraint(equalToConstant: 50)]
+            .forEach({$0.isActive = true})
     }
     
     @objc func tap() {
@@ -172,27 +173,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 extension UIImage {
     func imageWithAlpha(alpha: CGFloat) -> UIImage? {
