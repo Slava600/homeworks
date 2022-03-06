@@ -2,9 +2,7 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    let post = Post(title: "Пост")
     let stackView: UIStackView
-    
     init (){
         stackView = UIStackView()
         super.init(nibName: nil, bundle: nil)
@@ -14,11 +12,6 @@ class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func tap () {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.postTitle = post.title
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Лента"
@@ -64,4 +57,3 @@ class FeedViewController: UIViewController {
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
 }
-

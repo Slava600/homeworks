@@ -13,7 +13,7 @@ struct Const {
     static let indent: CGFloat = 16
 }
 
-public extension UIView {
+extension UIView {
     func toAutoLayout() {
         translatesAutoresizingMaskIntoConstraints = false
     }
