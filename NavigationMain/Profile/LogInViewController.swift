@@ -19,7 +19,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .systemYellow
+        contentView.backgroundColor = .white
         contentView.toAutoLayout()
         return contentView
     }()
