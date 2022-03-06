@@ -1,6 +1,7 @@
 
 import UIKit
 
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,6 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileViewController.view.backgroundColor = .lightGray
         let profilNavController = UINavigationController(rootViewController: profileViewController)
         
+        let logInViewContoller = LogInViewController()
+        logInViewContoller.view.backgroundColor = .white
+        let logInNavController = UINavigationController(rootViewController: logInViewContoller)
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
@@ -27,19 +32,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNavController.navigationBar.standardAppearance = appearance
         feedNavController.navigationBar.scrollEdgeAppearance = feedNavController.navigationBar.standardAppearance
 
-        
-        profilNavController.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
-        profilNavController.navigationBar.barTintColor = UIColor.white
-        profilNavController.navigationBar.standardAppearance = appearance
-        profilNavController.navigationBar.scrollEdgeAppearance = profilNavController.navigationBar.standardAppearance
-        
+        logInNavController.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+        logInNavController.navigationBar.barTintColor = UIColor.white
+        logInNavController.navigationBar.standardAppearance = appearance
+        logInNavController.navigationBar.scrollEdgeAppearance = logInNavController.navigationBar.standardAppearance
+        logInNavController.navigationBar.isHidden = true
 
-        tabBarController.viewControllers = [feedNavController, profilNavController]
+        tabBarController.viewControllers = [feedNavController, logInNavController]
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
-        
     }
     
     
@@ -70,7 +73,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    
 }
 

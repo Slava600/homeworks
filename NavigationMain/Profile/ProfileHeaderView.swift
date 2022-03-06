@@ -1,15 +1,6 @@
 
 import UIKit
 
-public extension UIView {
-    func toAutoLayout() {
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    func addSubviews(_ subviews: UIView...) {
-        subviews.forEach { addSubview($0) }
-    }
-}
-
 class ProfileHeaderView: UIView {
    
     let userNameLable: UILabel = {
@@ -23,7 +14,6 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-    
     let avatarImage: UIImageView = {
         let avatar = UIImageView (image: UIImage(named: "avatarImage"))
         avatar.toAutoLayout()
@@ -78,8 +68,6 @@ class ProfileHeaderView: UIView {
     }()
 
     private var statusText = ""
-
- 
     init() {
         super.init(frame: CGRect())
         self.addSubview(userNameLable)
@@ -107,11 +95,8 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
         NSLayoutConstraint.activate([
             self.leftAnchor.constraint(equalTo: superview!.leftAnchor),
             self.rightAnchor.constraint(equalTo: superview!.rightAnchor),
@@ -139,10 +124,6 @@ class ProfileHeaderView: UIView {
             statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
             statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
             statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
-            statusSetField.heightAnchor.constraint(equalToConstant: 40)
- ])
-        
+            statusSetField.heightAnchor.constraint(equalToConstant: 40)])
     }
-    
-
 }

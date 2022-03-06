@@ -10,7 +10,6 @@ class FeedViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -23,9 +22,8 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Лента"
-//        view.backgroundColor = .systemGray5
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.toAutoLayout()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -33,7 +31,7 @@ class FeedViewController: UIViewController {
         stackView.backgroundColor = .gray
         
         let firstButton = UIButton()
-        firstButton.translatesAutoresizingMaskIntoConstraints = false
+        firstButton.toAutoLayout()
         firstButton.backgroundColor = .systemGreen
         firstButton.layer.cornerRadius = 4
         firstButton.layer.shadowColor = UIColor.black.cgColor
@@ -44,7 +42,7 @@ class FeedViewController: UIViewController {
         stackView.addArrangedSubview(firstButton)
         
         let secondButton = UIButton()
-        secondButton.translatesAutoresizingMaskIntoConstraints = false
+        secondButton.toAutoLayout()
         secondButton.backgroundColor = .systemGreen
         secondButton.layer.cornerRadius = 4
         secondButton.layer.shadowColor = UIColor.black.cgColor
@@ -54,14 +52,12 @@ class FeedViewController: UIViewController {
         secondButton.addTarget(self, action: #selector(showPost), for: .touchUpInside)
         stackView.addArrangedSubview(secondButton)
         
-        view.addSubview(stackView)
-        
+        view.addSubviews(stackView)
+    
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: view.bounds.height / 1.5).isActive = true
-        
-
     }
     @objc func showPost(sender: UIButton) {
         let postViewController = PostViewController()
