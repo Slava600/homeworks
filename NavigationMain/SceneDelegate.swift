@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let profileViewController = ProfileViewController()
         profileViewController.view.backgroundColor = .lightGray
-        let profilNavController = UINavigationController(rootViewController: profileViewController)
+//        let profilNavController = UINavigationController(rootViewController: profileViewController)
         
         let logInViewContoller = LogInViewController()
         logInViewContoller.view.backgroundColor = .white
