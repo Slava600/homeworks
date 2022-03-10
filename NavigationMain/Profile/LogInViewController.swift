@@ -127,11 +127,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
+    
 
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification,object: nil)
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification,object: nil)
     }
+    
     
     private func useConstraint() {
         [scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -171,6 +173,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @objc func login() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
+    
 
 }
 
