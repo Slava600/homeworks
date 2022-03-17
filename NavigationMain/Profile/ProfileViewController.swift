@@ -32,11 +32,10 @@ class ProfileViewController: UIViewController, ImageZoomable {
         useConstraint()
     }
     func useConstraint() {
-        [postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        NSLayoutConstraint.activate ([postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
          postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
          postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-         postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)]
-            .forEach({$0.isActive = true})
+         postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     
     override func viewWillAppear(_ animated: Bool) {

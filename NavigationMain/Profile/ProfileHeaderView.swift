@@ -107,7 +107,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func useConstraint() {
-        [avatarImage.widthAnchor.constraint(equalToConstant: 100),
+        NSLayoutConstraint.activate ([avatarImage.widthAnchor.constraint(equalToConstant: 100),
          avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
          avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
          avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
@@ -128,6 +128,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
          statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
          statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
          statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusSetField.heightAnchor.constraint(equalToConstant: 40)].forEach({$0.isActive = true})
+         statusSetField.heightAnchor.constraint(equalToConstant: 40)])
     }
 }

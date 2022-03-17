@@ -60,7 +60,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     func useConstraint() {
         
-        [titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+        NSLayoutConstraint.activate ([titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
          titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
          
          titleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
@@ -71,16 +71,13 @@ class PhotosTableViewCell: UITableViewCell {
          stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
          stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
          stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-         stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-         
-        ].forEach({$0.isActive = true})
+         stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        ])
     
-        stackView.arrangedSubviews.forEach(
-            {
+        stackView.arrangedSubviews.forEach({
                 [$0.widthAnchor.constraint(greaterThanOrEqualToConstant: (contentView.frame.width - 16) / 4),
                  $0.heightAnchor.constraint(equalTo: $0.widthAnchor)]
                     .forEach({$0.isActive = true})
-                
             })
     }
 

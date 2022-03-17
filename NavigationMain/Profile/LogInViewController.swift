@@ -136,7 +136,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     
     private func useConstraint() {
-        [scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+        NSLayoutConstraint.activate ([scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
          scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
          scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
          scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -161,20 +161,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
          logInButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: Const.indent),
          logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
          logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
-         logInButton.heightAnchor.constraint(equalToConstant: 50)]
-            .forEach({$0.isActive = true})
-    }
-    
-    @objc func tap() {
-        password.resignFirstResponder()
-        userName.resignFirstResponder()
+         logInButton.heightAnchor.constraint(equalToConstant: 50)])
     }
 
     @objc func login() {
         navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
-    
-
 }
 
 extension UIImage {
