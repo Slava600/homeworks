@@ -1,7 +1,10 @@
 
 import UIKit
 
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
+    
+    var delegate:ImageZoomable?
     
     let userNameLable: UILabel = {
         let label = UILabel ()
@@ -14,15 +17,23 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    let avatarImage: UIImageView = {
+    lazy var avatarImage: UIImageView = {
         let avatar = UIImageView (image: UIImage(named: "avatarImage"))
         avatar.toAutoLayout()
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        avatar.isUserInteractionEnabled = true
+        avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         return avatar
     }()
+    
+    @objc func handleZoomTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        if let imageView = gestureRecognizer.view as? UIImageView {
+            delegate?.performZoomInForImageView(imageView)
+        }
+    }
     
     let statusLable: UILabel = {
         let status = UILabel()
