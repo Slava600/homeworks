@@ -11,7 +11,6 @@ class ProfileViewController: UIViewController, ImageZoomable {
         postTable.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
         postTable.rowHeight = UITableView.automaticDimension
         postTable.sectionHeaderHeight = UITableView.automaticDimension
-        //        postTable.estimatedSectionHeaderHeight = 220
         return postTable
     }()
     
