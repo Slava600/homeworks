@@ -6,6 +6,11 @@
 //
 import UIKit
 
+protocol ImageZoomable {
+    func performZoomInForImageView(_ imageView: UIImageView)
+}
+
+
 struct Const {
     
     static let leadingMargin: CGFloat = 16
@@ -21,4 +26,6 @@ extension UIView {
         subviews.forEach { addSubview($0) }
     }
 }
+
+
 

@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func useConstraint() {
-        [authorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
+        NSLayoutConstraint.activate ([authorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
          authorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
          authorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
          authorView.heightAnchor.constraint(equalToConstant: 20),
@@ -78,8 +78,7 @@ class PostTableViewCell: UITableViewCell {
          
          viewsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
          viewsView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: Const.indent),
-         viewsView.heightAnchor.constraint(equalToConstant: Const.indent),]
-            .forEach { $0.isActive = true }
+         viewsView.heightAnchor.constraint(equalToConstant: Const.indent)])
     }
     
     required init?(coder: NSCoder) {

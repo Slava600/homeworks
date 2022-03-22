@@ -1,7 +1,10 @@
 
 import UIKit
 
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
+    
+    var delegate:ImageZoomable?
     
     let userNameLable: UILabel = {
         let label = UILabel ()
@@ -14,15 +17,23 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    let avatarImage: UIImageView = {
+    lazy var avatarImage: UIImageView = {
         let avatar = UIImageView (image: UIImage(named: "avatarImage"))
         avatar.toAutoLayout()
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = CGColor(red: 255, green: 255, blue: 255, alpha: 1)
+        avatar.isUserInteractionEnabled = true
+        avatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         return avatar
     }()
+    
+    @objc func handleZoomTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        if let imageView = gestureRecognizer.view as? UIImageView {
+            delegate?.performZoomInForImageView(imageView)
+        }
+    }
     
     let statusLable: UILabel = {
         let status = UILabel()
@@ -96,7 +107,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func useConstraint() {
-        [avatarImage.widthAnchor.constraint(equalToConstant: 100),
+        NSLayoutConstraint.activate ([avatarImage.widthAnchor.constraint(equalToConstant: 100),
          avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
          avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
          avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
@@ -117,6 +128,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
          statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
          statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
          statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusSetField.heightAnchor.constraint(equalToConstant: 40)].forEach({$0.isActive = true})
+         statusSetField.heightAnchor.constraint(equalToConstant: 40)])
     }
 }

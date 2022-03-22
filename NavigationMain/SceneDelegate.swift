@@ -3,7 +3,7 @@ import UIKit
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    var window: UIWindow?
+    internal var window: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
@@ -29,16 +29,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNavVC.navigationBar.barTintColor = UIColor.white
         feedNavVC.navigationBar.standardAppearance = appearance
         feedNavVC.navigationBar.scrollEdgeAppearance = feedNavVC.navigationBar.standardAppearance
-
+        
         profNavVC.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
         profNavVC.navigationBar.barTintColor = UIColor.white
         profNavVC.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.black]
         profNavVC.navigationBar.standardAppearance = appearance
         profNavVC.navigationBar.scrollEdgeAppearance = profNavVC.navigationBar.standardAppearance
         profNavVC.navigationBar.isHidden = true
-
+        
         tabBarController.viewControllers = [profNavVC, feedNavVC]
-
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
