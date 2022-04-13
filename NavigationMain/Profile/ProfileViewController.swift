@@ -21,6 +21,10 @@ class ProfileViewController: UIViewController, ImageZoomable {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         
+        #if DEBUG
+        view.backgroundColor = .systemOrange
+        #endif
+        
         postTable.dataSource = self
         postTable.delegate = self
         
