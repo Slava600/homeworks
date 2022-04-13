@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class PhotosViewController: UIViewController {
     
@@ -33,15 +34,17 @@ class PhotosViewController: UIViewController {
         useConstraint()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
-    }
+
     
     func useConstraint() {
         NSLayoutConstraint.activate([collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
