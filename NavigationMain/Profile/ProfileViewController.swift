@@ -9,7 +9,7 @@ class ProfileViewController: UIViewController, ImageZoomable {
         postTable.refreshControl = UIRefreshControl()
         postTable.isScrollEnabled = true
         postTable.separatorInset = .zero
-        postTable.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
+        postTable.refreshControl?.addTarget(ProfileViewController.self, action: #selector(updatePostArray), for: .valueChanged)
         postTable.rowHeight = UITableView.automaticDimension
         postTable.sectionHeaderHeight = UITableView.automaticDimension
         return postTable

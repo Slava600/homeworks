@@ -57,7 +57,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         statusBatton.layer.shadowRadius = 4
         statusBatton.setTitle("Установить статус", for: .normal)
         statusBatton.setTitleColor(.white, for: .highlighted)
-        statusBatton.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
+        statusBatton.addTarget(ProfileHeaderView.self, action: #selector(pressButton), for: .touchUpInside)
         return statusBatton
     }()
     
@@ -74,7 +74,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         setField.layer.borderColor = UIColor.black.cgColor
         setField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: setField.frame.height))
         setField.leftViewMode = .always
-        setField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        setField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged), for: .editingChanged)
         return setField
     }()
     
@@ -107,7 +107,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func useConstraint() {
-        NSLayoutConstraint.activate ([avatarImage.widthAnchor.constraint(equalToConstant: 100),
+        NSLayoutConstraint.activate ([
+         avatarImage.widthAnchor.constraint(equalToConstant: 100),
          avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
          avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
          avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
@@ -128,6 +129,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
          statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
          statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
          statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusSetField.heightAnchor.constraint(equalToConstant: 40)])
+         statusSetField.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
 }
