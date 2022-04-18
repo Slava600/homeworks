@@ -28,7 +28,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Фото галлерея"
-        view.backgroundColor = .systemGray2
+//        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifire)
         useConstraint()

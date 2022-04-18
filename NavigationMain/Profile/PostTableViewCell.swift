@@ -58,6 +58,8 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubviews(authorView, descriptionView, image, likesView, viewsView)
+        contentView.backgroundColor = .white
+
         useConstraint()
     }
     

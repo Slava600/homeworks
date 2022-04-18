@@ -538,6 +538,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J2C8L6ZTF8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NavigationMain/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NavifationMain;
@@ -568,6 +569,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J2C8L6ZTF8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NavigationMain/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NavifationMain;
@@ -594,9 +596,11 @@
 			baseConfigurationReference = CEF5A2CEFED5FFD4BB2A4F21 /* Pods-StorageService.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = J2C8L6ZTF8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -627,9 +631,11 @@
 			baseConfigurationReference = 83104F7F9306E22CDD9A8A97 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = J2C8L6ZTF8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

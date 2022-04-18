@@ -43,6 +43,7 @@ class PhotosTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubviews(titleLabel, titleButton, stackView)
+        contentView.backgroundColor = .white
         
         for i in 0...3 {
             if i < constPhotoArray.count  {

@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, ImageZoomable {
     override func viewDidLoad (){
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
+
         
         #if DEBUG
         view.backgroundColor = .systemOrange
