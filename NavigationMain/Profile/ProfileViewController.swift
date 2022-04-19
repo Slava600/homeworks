@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, ImageZoomable {
         postTable.delegate = self
         
         postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
-        postTable.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifire)
+        postTable.register(MiniPhotosTableViewCell.self, forCellReuseIdentifier: MiniPhotosTableViewCell.identifire)
         postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
 
         view.addSubview(postTable)
@@ -66,18 +66,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
-            cell.specifyFields(post: posts[indexPath.row])
-            return cell
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifire, for: indexPath) as! PhotosTableViewCell
-        return cell
-        
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {
@@ -87,6 +75,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         } else
         { return nil }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
+            cell.specifyFields(post: posts[indexPath.row])
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: MiniPhotosTableViewCell.identifire, for: indexPath) as! MiniPhotosTableViewCell
+        return cell
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -98,7 +100,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            navigationController?.pushViewController(PhotosViewController(), animated: true)
+            navigationController?.pushViewController(GaleryViewController(), animated: true)
         }
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import StorageService
 import SnapKit
 
-class PhotosTableViewCell: UITableViewCell {
+class MiniPhotosTableViewCell: UITableViewCell {
     
     static let identifire = "PhotosTableViewCell"
     

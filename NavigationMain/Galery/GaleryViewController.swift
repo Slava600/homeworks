@@ -8,7 +8,7 @@
 import UIKit
 import StorageService
 
-class PhotosViewController: UIViewController {
+class GaleryViewController: UIViewController {
     
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -48,7 +48,7 @@ class PhotosViewController: UIViewController {
     
 }
 
-extension PhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension GaleryViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         constPhotoArray.count
