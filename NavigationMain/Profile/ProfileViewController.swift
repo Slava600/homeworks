@@ -1,11 +1,11 @@
 import UIKit
 import StorageService
+import SnapKit
 
 class ProfileViewController: UIViewController, ImageZoomable {
     
     var postTable: UITableView = {
         let postTable = UITableView(frame: .zero, style: .grouped)
-        postTable.toAutoLayout()
         postTable.refreshControl = UIRefreshControl()
         postTable.isScrollEnabled = true
         postTable.separatorInset = .zero
@@ -30,18 +30,16 @@ class ProfileViewController: UIViewController, ImageZoomable {
         postTable.delegate = self
         
         postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
-        postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
         postTable.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifire)
-        
+        postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
+
         view.addSubview(postTable)
-        useConstraint()
+        
+        postTable.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
-    func useConstraint() {
-        NSLayoutConstraint.activate ([postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-         postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-         postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-         postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true

@@ -13,7 +13,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     let photo: UIImageView = {
         let photo = UIImageView()
-        photo.toAutoLayout()
         return photo
     }()
     
@@ -21,19 +20,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         contentView.addSubview(photo)
         
-        useConstraint()
+        photo.snp.makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func useConstraint() {
-        NSLayoutConstraint.activate([photo.topAnchor.constraint(equalTo: contentView.topAnchor),
-                                     photo.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                                     photo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                                     photo.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-                                    ])
     }
     
     func setupImage(_ name: String) {

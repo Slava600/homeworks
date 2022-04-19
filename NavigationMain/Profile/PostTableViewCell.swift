@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import SnapKit
 
 class PostTableViewCell: UITableViewCell {
     
@@ -14,7 +15,6 @@ class PostTableViewCell: UITableViewCell {
     
     var authorView: UILabel = {
         let authorView = UILabel()
-        authorView.toAutoLayout()
         authorView.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         authorView.textColor = .black
         authorView.numberOfLines = 2
@@ -23,7 +23,6 @@ class PostTableViewCell: UITableViewCell {
     
     var descriptionView: UILabel = {
         let descriptionView = UILabel()
-        descriptionView.toAutoLayout()
         descriptionView.font = UIFont.systemFont(ofSize: 14)
         descriptionView.textColor = UIColor.systemGray
         descriptionView.numberOfLines = 0
@@ -32,7 +31,6 @@ class PostTableViewCell: UITableViewCell {
     
     var image: UIImageView = {
         let image = UIImageView()
-        image.toAutoLayout()
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .black
         return image
@@ -40,7 +38,6 @@ class PostTableViewCell: UITableViewCell {
     
     var likesView: UILabel = {
         let likesView = UILabel()
-        likesView.toAutoLayout()
         likesView.font = UIFont.systemFont(ofSize: 16)
         likesView.textColor = .black
         return likesView
@@ -48,7 +45,6 @@ class PostTableViewCell: UITableViewCell {
     
     var viewsView: UILabel = {
         let viewsView = UILabel()
-        viewsView.toAutoLayout()
         viewsView.font = UIFont.systemFont(ofSize: 16)
         viewsView.textColor = .black
         return viewsView
@@ -59,29 +55,31 @@ class PostTableViewCell: UITableViewCell {
         
         contentView.addSubviews(authorView, descriptionView, image, likesView, viewsView)
         contentView.backgroundColor = .white
-
-        useConstraint()
-    }
-    
-    func useConstraint() {
-        NSLayoutConstraint.activate ([authorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
-         authorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
-         authorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
-         authorView.heightAnchor.constraint(equalToConstant: 20),
-         image.topAnchor.constraint(equalTo: authorView.bottomAnchor, constant: Const.indent),
-         image.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-         image.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-         descriptionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
-         descriptionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
-         descriptionView.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Const.indent),
-         descriptionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -48),
-         likesView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
-         likesView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: Const.indent),
-         likesView.heightAnchor.constraint(equalToConstant: Const.indent),
-         
-         viewsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Const.trailingMargin),
-         viewsView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: Const.indent),
-         viewsView.heightAnchor.constraint(equalToConstant: Const.indent)])
+      
+        authorView.snp.makeConstraints { make in
+            make.left.right.top.equalTo(contentView).inset(16)
+            make.height.equalTo(20)
+        }
+        image.snp.makeConstraints { make in
+            make.top.equalTo(authorView.snp.bottom).inset(-16)
+            make.width.equalTo(contentView)
+            make.height.equalTo(contentView.snp.width)
+        }
+        descriptionView.snp.makeConstraints { make in
+            make.left.right.equalTo(contentView).inset(16)
+            make.top.equalTo(image.snp.bottom).inset(-16)
+            make.bottom.equalTo(contentView.snp.bottom).inset(40)
+        }
+        likesView.snp.makeConstraints { make in
+            make.top.equalTo(descriptionView.snp.bottom).inset(-16)
+            make.left.equalTo(contentView).inset(16)
+            make.height.equalTo(16)
+        }
+        viewsView.snp.makeConstraints { make in
+            make.right.equalTo(contentView).inset(16)
+            make.top.equalTo(descriptionView.snp.bottom).inset(-16)
+            make.height.equalTo(16)
+        }
     }
     
     required init?(coder: NSCoder) {

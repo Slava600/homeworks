@@ -38,8 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profNavVC.navigationBar.isHidden = true
         
         tabBarController.viewControllers = [profNavVC, feedNavVC]
-//        window.rootViewController = tabBarController
-        window.rootViewController = ProfileViewController()  // временная загрузка на профайлВК
+        window.rootViewController = tabBarController
+//        window.rootViewController = PhotosViewController()  // временная загрузка
 
         
         window.makeKeyAndVisible()
