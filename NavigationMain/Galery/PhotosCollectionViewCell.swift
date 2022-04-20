@@ -33,7 +33,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     func getRandomFilter (set: [ColorFilter]) -> ColorFilter {
         let randomFilterNumber = Int.random(in: 0..<set.count)
-        print (set[randomFilterNumber])
         return set[randomFilterNumber]
     }
     
