@@ -1,8 +1,11 @@
 import UIKit
 import StorageService
 import SnapKit
+import iOSIntPackage
+
 
 class ProfileViewController: UIViewController, ImageZoomable {
+    var imageProcessor = ImageProcessor()
     
     var postTable: UITableView = {
         let postTable = UITableView(frame: .zero, style: .grouped)
@@ -80,13 +83,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
             cell.specifyFields(post: posts[indexPath.row])
-            
+        
             return cell
         }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: MiniPhotosTableViewCell.identifire, for: indexPath) as! MiniPhotosTableViewCell
         return cell
-        
     }
     
     

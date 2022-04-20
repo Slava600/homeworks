@@ -9,7 +9,9 @@ import UIKit
 import StorageService
 import SnapKit
 
+
 class PostTableViewCell: UITableViewCell {
+        
     
     static let identifire = "PostTableViewCell"
     

@@ -7,8 +7,11 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class GaleryViewController: UIViewController {
+    
+    var imageProcessor = ImageProcessor()
     
     lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -57,7 +60,7 @@ extension GaleryViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifire, for: indexPath) as? PhotosCollectionViewCell else { return UICollectionViewCell() }
-        cell.setupImage(constPhotoArray[indexPath.item])
+        cell.setupImage(constPhotoArray[indexPath.item])        
         return cell
         
     }

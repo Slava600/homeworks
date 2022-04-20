@@ -120,7 +120,6 @@
 		11624DB827C2B4F700548048 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				11B06D5727CC3DFC0087248B /* LogInViewController.swift */,
 				11EC209B27BAB44100FF048A /* ProfileViewController.swift */,
 				11624DB927C2B55B00548048 /* ProfileHeaderView.swift */,
 				11CC493327D5375F009A39C1 /* MiniPhotosTableViewCell.swift */,
@@ -156,6 +155,7 @@
 			children = (
 				11B06D5927CD405C0087248B /* MainSettings.swift */,
 				11EC20C227BB0B6600FF048A /* SceneDelegate.swift */,
+				11B06D5727CC3DFC0087248B /* LogInViewController.swift */,
 				11624DB827C2B4F700548048 /* Profile */,
 				1123FCE8280F7C7E00C61A01 /* Galery */,
 				11624DC827C3EFCB00548048 /* Feed */,
