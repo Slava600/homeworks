@@ -4,22 +4,13 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>NavigationMain.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>isShown</key>
-			<true/>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-		<key>RELEAZE_NavigationMain.xcscheme_^#shared#^_</key>
+		<key>DEBUG_NavigationMain.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>StorageService.xcscheme_^#shared#^_</key>
+		<key>RELEAZE_NavigationMain.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<true/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>

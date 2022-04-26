@@ -100,6 +100,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         contentView.addSubviews(logo, stackView, logInButton)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
+        
 
         
         let notificationCenter = NotificationCenter.default
@@ -107,21 +108,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         notificationCenter.addObserver(self,selector: #selector(keyboardWillHide),name: UIResponder.keyboardWillHideNotification,object: nil)
         self.scrollView.keyboardDismissMode = .onDrag
         
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -143,6 +130,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(50)
         }
+        
+#if release
+        userName.text = ""
+#elseif DEBUG
+        userName.text = "Rich"
+#endif
+        
     }
     
     @objc
@@ -168,7 +162,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
    
 
     @objc func login() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        
+        var userService: UserService
+#if release
+        userService = CurrentUserService()
+#elseif DEBUG
+        userService = TestUserService()
+#endif
+        let profileVC = ProfileViewController(userService: userService, name: userName.text ?? "")
+
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

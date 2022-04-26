@@ -20,29 +20,36 @@ class ProfileViewController: UIViewController, ImageZoomable {
     
     var posts = postsArray
     
+    private let userService: UserService
+    private let userName: String
+    
+    init(userService: UserService, name: String){
+        self.userService = userService
+        self.userName = name
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad (){
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
 
-        
         #if DEBUG
         view.backgroundColor = .systemOrange
         #endif
-        
         postTable.dataSource = self
         postTable.delegate = self
-        
         postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
         postTable.register(MiniPhotosTableViewCell.self, forCellReuseIdentifier: MiniPhotosTableViewCell.identifire)
         postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
-
         view.addSubview(postTable)
-        
         postTable.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
@@ -56,7 +63,6 @@ class ProfileViewController: UIViewController, ImageZoomable {
     var startingFrame: CGRect?
     var backgroundView: UIView?
     var startingImageView: UIImageView?
-    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -74,6 +80,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifire) as! ProfileHeaderView
             headerView.delegate = self
+            
+            if let user = userService.getUser(name: userName){
+                headerView.initUser(user: user)
+            }
+            
             return headerView
         } else
         { return nil }

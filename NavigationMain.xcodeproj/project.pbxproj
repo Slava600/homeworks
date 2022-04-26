@@ -12,11 +12,14 @@
 		11624DB727BD8A4300548048 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11624DB627BD8A4300548048 /* InfoViewController.swift */; };
 		11624DBA27C2B55B00548048 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11624DB927C2B55B00548048 /* ProfileHeaderView.swift */; };
 		11B06D5827CC3DFC0087248B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B06D5727CC3DFC0087248B /* LogInViewController.swift */; };
-		11B06D5A27CD405C0087248B /* MainSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B06D5927CD405C0087248B /* MainSettings.swift */; };
+		11B06D5A27CD405C0087248B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B06D5927CD405C0087248B /* Settings.swift */; };
 		11CC493227D150C0009A39C1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC493127D150C0009A39C1 /* PostTableViewCell.swift */; };
 		11CC493427D5375F009A39C1 /* MiniPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC493327D5375F009A39C1 /* MiniPhotosTableViewCell.swift */; };
 		11CC493627D921CB009A39C1 /* GaleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC493527D921CB009A39C1 /* GaleryViewController.swift */; };
 		11CC493827D922D5009A39C1 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC493727D922D5009A39C1 /* PhotosCollectionViewCell.swift */; };
+		11D623B82817F5BE009A2A4A /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62BAC0CF4B78046B3C3BAAE /* Pods_StorageService.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		11D623B92817F5BE009A2A4A /* Pods_StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D62BAC0CF4B78046B3C3BAAE /* Pods_StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11D623BC2817FE58009A2A4A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D623BB2817FE58009A2A4A /* User.swift */; };
 		11EC208627BA845500FF048A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC208527BA845500FF048A /* AppDelegate.swift */; };
 		11EC208A27BA845500FF048A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EC208927BA845500FF048A /* ViewController.swift */; };
 		11EC208F27BA845900FF048A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11EC208E27BA845900FF048A /* Assets.xcassets */; };
@@ -29,7 +32,6 @@
 		11EE721028073B1F0086712D /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11EE720A28073B1F0086712D /* StorageService.framework */; };
 		11EE721128073B1F0086712D /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11EE720A28073B1F0086712D /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11EE721628073B450086712D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11624DB427BD794400548048 /* Post.swift */; };
-		5D5171C3D30D824D84A8EE05 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62BAC0CF4B78046B3C3BAAE /* Pods_StorageService.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		11D623BA2817F5BE009A2A4A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				11D623B92817F5BE009A2A4A /* Pods_StorageService.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11EE71CD2807320B0086712D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,11 +74,12 @@
 		11624DB627BD8A4300548048 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		11624DB927C2B55B00548048 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		11B06D5727CC3DFC0087248B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		11B06D5927CD405C0087248B /* MainSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettings.swift; sourceTree = "<group>"; };
+		11B06D5927CD405C0087248B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		11CC493127D150C0009A39C1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		11CC493327D5375F009A39C1 /* MiniPhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPhotosTableViewCell.swift; sourceTree = "<group>"; };
 		11CC493527D921CB009A39C1 /* GaleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryViewController.swift; sourceTree = "<group>"; };
 		11CC493727D922D5009A39C1 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		11D623BB2817FE58009A2A4A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11EC208527BA845500FF048A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11EC208927BA845500FF048A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		11EC208E27BA845900FF048A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D5171C3D30D824D84A8EE05 /* Pods_StorageService.framework in Frameworks */,
+				11D623B82817F5BE009A2A4A /* Pods_StorageService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +134,7 @@
 		11624DB827C2B4F700548048 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				11B06D5727CC3DFC0087248B /* LogInViewController.swift */,
 				11EC209B27BAB44100FF048A /* ProfileViewController.swift */,
 				11624DB927C2B55B00548048 /* ProfileHeaderView.swift */,
 				11CC493327D5375F009A39C1 /* MiniPhotosTableViewCell.swift */,
@@ -138,6 +153,16 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		11D623BD2817FE77009A2A4A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				11B06D5927CD405C0087248B /* Settings.swift */,
+				11D623BB2817FE58009A2A4A /* User.swift */,
+			);
+			name = Settings;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		11EC207927BA845500FF048A = {
 			isa = PBXGroup;
 			children = (
@@ -153,14 +178,13 @@
 		11EC208427BA845500FF048A /* NavigationMain */ = {
 			isa = PBXGroup;
 			children = (
-				11B06D5927CD405C0087248B /* MainSettings.swift */,
-				11EC20C227BB0B6600FF048A /* SceneDelegate.swift */,
-				11B06D5727CC3DFC0087248B /* LogInViewController.swift */,
+				11D623BD2817FE77009A2A4A /* Settings */,
 				11624DB827C2B4F700548048 /* Profile */,
 				1123FCE8280F7C7E00C61A01 /* Galery */,
 				11624DC827C3EFCB00548048 /* Feed */,
 				11EC208E27BA845900FF048A /* Assets.xcassets */,
 				11EC209327BA845900FF048A /* Info.plist */,
+				11EC20C227BB0B6600FF048A /* SceneDelegate.swift */,
 				11EC208527BA845500FF048A /* AppDelegate.swift */,
 				11EC208927BA845500FF048A /* ViewController.swift */,
 				11EC209027BA845900FF048A /* LaunchScreen.storyboard */,
@@ -244,6 +268,7 @@
 				11EE720628073B1F0086712D /* Sources */,
 				11EE720728073B1F0086712D /* Frameworks */,
 				11EE720828073B1F0086712D /* Resources */,
+				11D623BA2817F5BE009A2A4A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -388,8 +413,9 @@
 				11EC208627BA845500FF048A /* AppDelegate.swift in Sources */,
 				11624DBA27C2B55B00548048 /* ProfileHeaderView.swift in Sources */,
 				11EC209F27BAC8F800FF048A /* PostViewController.swift in Sources */,
-				11B06D5A27CD405C0087248B /* MainSettings.swift in Sources */,
+				11B06D5A27CD405C0087248B /* Settings.swift in Sources */,
 				11624DB727BD8A4300548048 /* InfoViewController.swift in Sources */,
+				11D623BC2817FE58009A2A4A /* User.swift in Sources */,
 				11CC493427D5375F009A39C1 /* MiniPhotosTableViewCell.swift in Sources */,
 				11B06D5827CC3DFC0087248B /* LogInViewController.swift in Sources */,
 				11CC493827D922D5009A39C1 /* PhotosCollectionViewCell.swift in Sources */,
@@ -611,7 +637,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEF5A2CEFED5FFD4BB2A4F21 /* Pods-StorageService.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -646,7 +671,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83104F7F9306E22CDD9A8A97 /* Pods-StorageService.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

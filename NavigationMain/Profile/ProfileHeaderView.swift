@@ -11,16 +11,16 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let label = UILabel ()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
-        label.text = "Amber Richard"
-        label.numberOfLines = 0
+        label.text = "Нет данных"
+        label.numberOfLines = 1
 
         label.textAlignment = .left
         return label
     }()
     
     lazy var avatarImage: UIImageView = {
-        let avatar = UIImageView (image: UIImage(named: "avatarImage"))
-
+//        let avatar = UIImageView (image: UIImage(named: "avatarImage"))
+        let avatar = UIImageView()
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
@@ -39,7 +39,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     let statusLable: UILabel = {
         let status = UILabel()
 
-        status.text = "статус не установлен"
+        status.text = ""
         status.textAlignment = .natural
         status.textColor = .gray
         status.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -119,6 +119,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             make.top.equalTo(contentView).offset(133)
         }
     }
+    
+    public func initUser(user: User){
+        userNameLable.text = user.name
+        avatarImage.image = user.avatar
+        statusLable.text = user.status
+    }
+    
     
     @objc func pressButton() {
         print(statusLable.text ?? "---")
