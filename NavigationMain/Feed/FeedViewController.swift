@@ -16,7 +16,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         title = "Лента"
         
-        stackView.toAutoLayout()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -24,7 +23,6 @@ class FeedViewController: UIViewController {
         stackView.backgroundColor = .gray
         
         let firstButton = UIButton()
-        firstButton.toAutoLayout()
         firstButton.backgroundColor = .systemGreen
         firstButton.layer.cornerRadius = 4
         firstButton.layer.shadowColor = UIColor.black.cgColor
@@ -35,7 +33,6 @@ class FeedViewController: UIViewController {
         stackView.addArrangedSubview(firstButton)
         
         let secondButton = UIButton()
-        secondButton.toAutoLayout()
         secondButton.backgroundColor = .systemGreen
         secondButton.layer.cornerRadius = 4
         secondButton.layer.shadowColor = UIColor.black.cgColor
@@ -47,10 +44,12 @@ class FeedViewController: UIViewController {
         
         view.addSubviews(stackView)
     
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: view.bounds.height / 1.5).isActive = true
+        stackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(view)
+            make.width.equalTo(view).inset(16)
+            make.height.equalTo(view).inset(view.bounds.height / 3)
+        }
+ 
     }
     @objc func showPost(sender: UIButton) {
         let postViewController = PostViewController()

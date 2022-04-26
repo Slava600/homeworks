@@ -1,5 +1,6 @@
 
 import UIKit
+import SnapKit
 
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
@@ -12,14 +13,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         label.textColor = .black
         label.text = "Amber Richard"
         label.numberOfLines = 0
-        label.toAutoLayout()
+
         label.textAlignment = .left
         return label
     }()
     
     lazy var avatarImage: UIImageView = {
         let avatar = UIImageView (image: UIImage(named: "avatarImage"))
-        avatar.toAutoLayout()
+
         avatar.clipsToBounds = true
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
@@ -37,7 +38,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusLable: UILabel = {
         let status = UILabel()
-        status.toAutoLayout()
+
         status.text = "статус не установлен"
         status.textAlignment = .natural
         status.textColor = .gray
@@ -48,7 +49,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusBatton: UIButton = {
         let statusBatton = UIButton()
-        statusBatton.toAutoLayout()
+
         statusBatton.backgroundColor = UIColor(named: "battonColor")
         statusBatton.layer.cornerRadius = 4
         statusBatton.layer.shadowColor = UIColor.black.cgColor
@@ -63,7 +64,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusSetField: UITextField = {
         let setField = UITextField()
-        setField.toAutoLayout()
+
         setField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         setField.placeholder = "Ввести статус"
         setField.textColor = .black
@@ -84,8 +85,39 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubviews(userNameLable, avatarImage, statusLable, statusBatton, statusSetField)
-        useConstraint()
+        contentView.addSubviews(avatarImage, userNameLable, statusLable, statusBatton, statusSetField)
+        contentView.backgroundColor = .white
+
+        avatarImage.snp.makeConstraints { make in
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+            make.left.equalTo(contentView).offset(Const.leadingMargin)
+            make.top.equalTo(contentView).offset(Const.indent)
+        }
+
+        userNameLable.snp.makeConstraints { make in
+            make.left.equalTo(avatarImage.snp.right).offset(20)
+            make.top.right.equalTo(contentView).offset(27)
+        }
+        statusLable.snp.makeConstraints { make in
+            make.left.equalTo(avatarImage.snp.right).offset(20)
+            make.right.equalTo(contentView.snp.right).offset(-16)
+            make.height.equalTo(20)
+            make.top.equalTo(userNameLable.snp.bottom).offset(10)
+        }
+        statusSetField.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.left.equalTo(avatarImage.snp.right).offset(20)
+            make.right.equalTo(contentView).offset(-20)
+            make.top.equalTo(statusLable).offset(22)
+
+        }
+        statusBatton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.left.equalTo(contentView).offset(16)
+            make.right.equalTo(contentView).offset(-16)
+            make.top.equalTo(contentView).offset(133)
+        }
     }
     
     @objc func pressButton() {
@@ -106,28 +138,5 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func useConstraint() {
-        NSLayoutConstraint.activate ([avatarImage.widthAnchor.constraint(equalToConstant: 100),
-         avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
-         avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Const.leadingMargin),
-         avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Const.indent),
-         
-         userNameLable.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
-         userNameLable.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 27),
-         userNameLable.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         
-         statusLable.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
-         statusLable.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusLable.bottomAnchor.constraint(equalTo: statusSetField.topAnchor, constant: -6),
-         
-         statusBatton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-         statusBatton.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusBatton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: Const.indent),
-         statusBatton.heightAnchor.constraint(equalToConstant: 50),
-         
-         statusSetField.leftAnchor.constraint(equalTo: avatarImage.rightAnchor, constant: 20),
-         statusSetField.bottomAnchor.constraint(equalTo: statusBatton.topAnchor, constant: -10),
-         statusSetField.rightAnchor.constraint(greaterThanOrEqualTo: contentView.rightAnchor, constant: Const.trailingMargin),
-         statusSetField.heightAnchor.constraint(equalToConstant: 40)])
-    }
+
 }

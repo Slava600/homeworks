@@ -39,6 +39,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController.viewControllers = [profNavVC, feedNavVC]
         window.rootViewController = tabBarController
+//        window.rootViewController = PhotosViewController()  // временная загрузка
+
+        
         window.makeKeyAndVisible()
         self.window = window
     }

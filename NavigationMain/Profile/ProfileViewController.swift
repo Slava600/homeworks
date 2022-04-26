@@ -1,14 +1,18 @@
 import UIKit
+import StorageService
+import SnapKit
+import iOSIntPackage
+
 
 class ProfileViewController: UIViewController, ImageZoomable {
+    var imageProcessor = ImageProcessor()
     
     var postTable: UITableView = {
         let postTable = UITableView(frame: .zero, style: .grouped)
-        postTable.toAutoLayout()
         postTable.refreshControl = UIRefreshControl()
         postTable.isScrollEnabled = true
         postTable.separatorInset = .zero
-        postTable.refreshControl?.addTarget(self, action: #selector(updatePostArray), for: .valueChanged)
+        postTable.refreshControl?.addTarget(ProfileViewController.self, action: #selector(updatePostArray), for: .valueChanged)
         postTable.rowHeight = UITableView.automaticDimension
         postTable.sectionHeaderHeight = UITableView.automaticDimension
         return postTable
@@ -19,23 +23,26 @@ class ProfileViewController: UIViewController, ImageZoomable {
     override func viewDidLoad (){
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
+
+        
+        #if DEBUG
+        view.backgroundColor = .systemOrange
+        #endif
         
         postTable.dataSource = self
         postTable.delegate = self
         
         postTable.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifire)
+        postTable.register(MiniPhotosTableViewCell.self, forCellReuseIdentifier: MiniPhotosTableViewCell.identifire)
         postTable.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifire)
-        postTable.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifire)
-        
+
         view.addSubview(postTable)
-        useConstraint()
+        
+        postTable.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
-    func useConstraint() {
-        NSLayoutConstraint.activate ([postTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-         postTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-         postTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-         postTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
@@ -62,18 +69,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
-            cell.specifyFields(post: posts[indexPath.row])
-            return cell
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifire, for: indexPath) as! PhotosTableViewCell
-        return cell
-        
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {
@@ -83,6 +78,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         } else
         { return nil }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifire, for: indexPath) as! PostTableViewCell
+            cell.specifyFields(post: posts[indexPath.row])
+        
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: MiniPhotosTableViewCell.identifire, for: indexPath) as! MiniPhotosTableViewCell
+        return cell
+    }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -94,7 +101,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            navigationController?.pushViewController(PhotosViewController(), animated: true)
+            navigationController?.pushViewController(GaleryViewController(), animated: true)
         }
     }
     
