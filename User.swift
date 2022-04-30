@@ -46,13 +46,16 @@ class CurrentUserService: UserService {
     }
 }
 
+
+
 class TestUserService: UserService {
     private let user: User
     
     init(){
-        self.user = User(name: "Рич", avatar: UIImage(named: "avatarImage"), status: "Я наглый пёсель")
+        self.user = User(name: "Рич", avatar: UIImage(named: "avatarImage"), status: "Наглый пёсель")
     }
     
+
     func getUser(name: String) -> User? {
            if name == user.name {
                 return user

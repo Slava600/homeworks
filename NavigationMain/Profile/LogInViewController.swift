@@ -8,7 +8,16 @@
 import UIKit
 import SnapKit
 
+protocol LoginViewControllerDelegate {
+    func userAuthorization (log: String, pswd: String) -> Bool
+}
+
+
 class LogInViewController: UIViewController, UITextFieldDelegate {
+    
+    var isLogined = false
+    
+    var delegate: LoginViewControllerDelegate!
     
     var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -41,6 +50,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         userName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: userName.frame.height))
         userName.leftViewMode = .always
         userName.returnKeyType = .done
+        userName.addTarget(self, action: #selector (loginButtonAlfa), for: .editingChanged)
         return userName
     }()
     
@@ -57,6 +67,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         password.leftViewMode = .always
         password.placeholder = "Пароль"
         password.returnKeyType = UIReturnKeyType.default
+        password.addTarget(self, action: #selector (loginButtonAlfa), for: .editingChanged)
+
         return password
     }()
     
@@ -89,6 +101,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         stackView.backgroundColor = .systemGray6
         stackView.clipsToBounds = true
         return stackView
+    }()
+    
+    private var authorizationAlertController: UIAlertController = {
+        let alert = UIAlertController(
+            title: "Ошибка авторизации",
+            message: "Логин или пароль не верны",
+            preferredStyle: .alert)
+        let acceptActoin = UIAlertAction(title: "Попробую снова", style: .default) {(_) -> Void in
+        }
+        alert.addAction(acceptActoin)
+        return alert
     }()
 
     override func viewDidLoad() {
@@ -130,17 +153,28 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             make.left.right.equalTo(contentView).inset(16)
             make.height.equalTo(50)
         }
+
         
-#if release
+//#if release
+//        userName.text = ""
+//#elseif DEBUG
         userName.text = ""
-#elseif DEBUG
-        userName.text = "Rich"
-#endif
+//#endif
         
     }
     
-    @objc
-    private func keyboardWillShow(notification: NSNotification) {
+    @objc func loginButtonAlfa(){
+        if userName.text?.isEmpty == false {
+            logInButton.alpha = 1.0
+            logInButton.isEnabled = true
+        } else {
+            logInButton.alpha = 0.5
+            logInButton.isEnabled = false
+        }
+    }
+    
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             scrollView.contentInset.bottom = keyboardFrame.height
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
@@ -164,14 +198,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @objc func login() {
         
         var userService: UserService
-#if release
-        userService = CurrentUserService()
-#elseif DEBUG
+//#if release
+//        userService = CurrentUserService()
+//#elseif DEBUG
         userService = TestUserService()
-#endif
-        let profileVC = ProfileViewController(userService: userService, name: userName.text ?? "")
-
-        navigationController?.pushViewController(profileVC, animated: true)
+//#endif
+        let profileVC = ProfileViewController(userService: userService, name: userName.text!)
+        
+        if delegate?.userAuthorization(log: userName.text!, pswd: password.text!) == true {
+            isLogined = true
+            navigationController?.pushViewController(profileVC, animated: true)
+            navigationController?.setViewControllers([profileVC], animated: true)
+        } else {
+            print ("Ошибка авторизации")
+            present(authorizationAlertController, animated: true, completion: nil)
+        }
     }
 }
 

@@ -8,6 +8,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         
+        let loginInspector = LoginInspector()
+        
         let tabBarController = UITabBarController ()
         tabBarController.tabBar.backgroundColor = .white
         
@@ -17,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let logInVC = LogInViewController()
         logInVC.view.backgroundColor = .white
+        logInVC.delegate = loginInspector
         
         let profNavVC = UINavigationController(rootViewController: logInVC)
         
