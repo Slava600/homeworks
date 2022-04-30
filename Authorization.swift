@@ -23,7 +23,7 @@ final class Authorization {
     
 }
 
-class LoginInspector: LoginViewControllerDelegate {
+class LoginAuthorizationInspector: LoginViewControllerDelegate {
     func userAuthorization(log: String, pswd: String) -> Bool {
        return Authorization.shared.checker(log: log, pswd: pswd)
     }

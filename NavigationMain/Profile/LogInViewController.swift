@@ -158,13 +158,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 //#if release
 //        userName.text = ""
 //#elseif DEBUG
-        userName.text = ""
+        userName.text = "Рич"
+        password.text = "123"
 //#endif
         
     }
     
     @objc func loginButtonAlfa(){
-        if userName.text?.isEmpty == false {
+        if userName.text?.isEmpty == false && password.text?.isEmpty == false {
             logInButton.alpha = 1.0
             logInButton.isEnabled = true
         } else {
