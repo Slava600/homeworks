@@ -44,8 +44,8 @@ class MiniPhotosTableViewCell: UITableViewCell {
         contentView.backgroundColor = .white
         
         for i in 0...3 {
-            if i < constPhotoArray.count  {
-                let photo = UIImageView(image: UIImage(named: constPhotoArray[i] ))
+            if i < galeryPhotos.count  {
+                let photo = UIImageView(image: galeryPhotos[i])
                 photo.layer.cornerRadius = 6
                 photo.clipsToBounds = true
                 stackView.addArrangedSubview(photo)

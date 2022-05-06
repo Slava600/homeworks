@@ -11,7 +11,7 @@ import iOSIntPackage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    // свойство с массивом филтров которые будут применяться для фото
+   //  свойство с массивом филтров которые будут применяться для фото
     let imageProcessor = ImageProcessor()
     private let filtersSet: [ColorFilter] = [.colorInvert, .noir, .chrome, .fade, .posterize, .tonal, .process, .transfer, .sepia(intensity: 80)]
     
@@ -22,10 +22,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         let photo = UIImageView()
         return photo
     }()
-    
-    func setupImage(_ name: String) {
-        photo.image = UIImage(named: name)
-// применение фильтров из фреймворка iOSIntPackage. Фильтры применяются рандомно
+
+
+    func setupImage(_ image: UIImage) {
+        photo.image = image
         imageProcessor.processImage(sourceImage: photo.image ?? UIImage(), filter: getRandomFilter(set: filtersSet)){
             filteredImage  in photo.image = filteredImage
         }
