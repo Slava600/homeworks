@@ -8,6 +8,7 @@ class PostViewController: UIViewController {
         view.backgroundColor = .systemGray2
         let infoBarItem: UIBarButtonItem = UIBarButtonItem(title: "Инфо", style: .plain, target: self, action: #selector(tapInfo))
         navigationItem.rightBarButtonItem = infoBarItem
+        
     }
     @objc func tapInfo() {
         let infoViewController = InfoViewController()

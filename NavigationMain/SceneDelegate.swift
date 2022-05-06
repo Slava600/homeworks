@@ -1,45 +1,52 @@
 
 import UIKit
 
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    var window: UIWindow?
+    internal var window: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         
+        let loginInspector = MyLoginFactory.shared.returnAuthorization()
+        
         let tabBarController = UITabBarController ()
         tabBarController.tabBar.backgroundColor = .white
         
-        let feedViewController = FeedViewController()
-        feedViewController.view.backgroundColor = UIColor.white
-        let feedNavController = UINavigationController(rootViewController: feedViewController)
-
-        let profileViewController = ProfileViewController()
-        profileViewController.view.backgroundColor = .lightGray
-        let profilNavController = UINavigationController(rootViewController: profileViewController)
+        let feedVC = FeedViewController()
+        feedVC.view.backgroundColor = UIColor.white
+        let feedNavVC = UINavigationController(rootViewController: feedVC)
+        
+        let logInVC = LogInViewController()
+        logInVC.view.backgroundColor = .white
+        logInVC.delegate = loginInspector
+        
+        let profNavVC = UINavigationController(rootViewController: logInVC)
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
         
-        feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "text.justify"), tag: 0)
-        feedNavController.navigationBar.barTintColor = UIColor.white
-        feedNavController.navigationBar.standardAppearance = appearance
-        feedNavController.navigationBar.scrollEdgeAppearance = feedNavController.navigationBar.standardAppearance
-
+        feedNavVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "text.justify"), tag: 0)
+        feedNavVC.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.black]
+        feedNavVC.navigationBar.barTintColor = UIColor.white
+        feedNavVC.navigationBar.standardAppearance = appearance
+        feedNavVC.navigationBar.scrollEdgeAppearance = feedNavVC.navigationBar.standardAppearance
         
-        profilNavController.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
-        profilNavController.navigationBar.barTintColor = UIColor.white
-        profilNavController.navigationBar.standardAppearance = appearance
-        profilNavController.navigationBar.scrollEdgeAppearance = profilNavController.navigationBar.standardAppearance
+        profNavVC.tabBarItem = UITabBarItem( title: "Profile", image: UIImage(systemName: "person"), tag: 0)
+        profNavVC.navigationBar.barTintColor = UIColor.white
+        profNavVC.navigationBar.titleTextAttributes = [ .foregroundColor: UIColor.black]
+        profNavVC.navigationBar.standardAppearance = appearance
+        profNavVC.navigationBar.scrollEdgeAppearance = profNavVC.navigationBar.standardAppearance
+        profNavVC.navigationBar.isHidden = true
         
-
-        tabBarController.viewControllers = [profilNavController, feedNavController]
-
+        tabBarController.viewControllers = [profNavVC, feedNavVC]
         window.rootViewController = tabBarController
+//        window.rootViewController = PhotosViewController()  // временная загрузка
+
+        
         window.makeKeyAndVisible()
         self.window = window
-        
     }
     
     
@@ -70,7 +77,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    
 }
 

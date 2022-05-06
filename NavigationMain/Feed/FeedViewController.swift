@@ -2,32 +2,57 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    let post = Post(title: "Пост")
-    var button = UIButton()
-    
-    @objc func tap () {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.postTitle = post.title
+    let stackView: UIStackView
+    init (){
+        stackView = UIStackView()
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Лента"
-        view.backgroundColor = .systemGray5
-
         
-        button = UIButton(frame: CGRect(x: 100, y: 300, width: 200, height: 50))
-        button.center = view.center
-        button.autoresizingMask = .init(arrayLiteral: [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin])
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
-        button.backgroundColor = .systemBlue
-        button.setTitle("Посмотреть пост", for: .normal)
-        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-        view.addSubview(button)
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.backgroundColor = .gray
+        
+        let firstButton = UIButton()
+        firstButton.backgroundColor = .systemGreen
+        firstButton.layer.cornerRadius = 4
+        firstButton.layer.shadowColor = UIColor.black.cgColor
+        firstButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        firstButton.layer.shadowOpacity = 0.7
+        firstButton.layer.shadowRadius = 4
+        firstButton.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+        stackView.addArrangedSubview(firstButton)
+        
+        let secondButton = UIButton()
+        secondButton.backgroundColor = .systemGreen
+        secondButton.layer.cornerRadius = 4
+        secondButton.layer.shadowColor = UIColor.black.cgColor
+        secondButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        secondButton.layer.shadowOpacity = 0.7
+        secondButton.layer.shadowRadius = 4
+        secondButton.addTarget(self, action: #selector(showPost), for: .touchUpInside)
+        stackView.addArrangedSubview(secondButton)
+        
+        view.addSubviews(stackView)
+    
+        stackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(view)
+            make.width.equalTo(view).inset(16)
+            make.height.equalTo(view).inset(view.bounds.height / 3)
+        }
+ 
+    }
+    @objc func showPost(sender: UIButton) {
+        let postViewController = PostViewController()
+        self.navigationController?.pushViewController(postViewController, animated: true)
     }
 }
-
-
-
-//       tabBarController?.tabBar.isHidden = true
